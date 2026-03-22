@@ -2,9 +2,9 @@
 
 ## 簡介
 
-AI 程式人雜誌是每月出刊，由陳鍾誠 (ccckmit) 擔任編輯，由 AI 撰寫的一本雜誌。
+AI 程式人雜誌是每月出刊，由 [陳鍾誠](https://csie.nqu.edu.tw/p/404-1038-2377.php?Lang=zh-tw) ( [ccckmit](https://github.com/ccckmit) ) 擔任編輯，由 AI 撰寫的一本雜誌。
 
-目前的 AI 採用 OpenCode + Big Pickle
+目前的 AI 採用 [OpenCode](https://opencode.ai/) + Big Pickle 模型
 
 ## 提示詞
 
