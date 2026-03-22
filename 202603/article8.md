@@ -312,6 +312,6 @@ Claude 4 的發布展現了 Anthropic 在大型語言模型領域的持續創新
 
 **延伸閱讀**
 
-- [Anthropic Claude 4 公告](https://www.anthropic.com/news/claude-4)
-- [Claude 4 文件](https://docs.anthropic.com/claude/reference)
-- [API 定價](https://www.anthropic.com/pricing)
+- [Anthropic Claude 4 公告](https://www.google.com/search?q=Claude+4+Anthropic)
+- [Claude 4 文件](https://www.google.com/search?q=Claude+4+API+documentation)
+- [API 定價](https://www.google.com/search?q=Claude+API+pricing)

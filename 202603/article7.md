@@ -284,6 +284,6 @@ agent = Agent(
 
 **延伸閱讀**
 
-- [LangChain 文件](https://python.langchain.com/)
-- [AutoGen GitHub](https://github.com/microsoft/autogen)
-- [CrewAI 文件](https://docs.crewai.com/)
+- [LangChain 文件](https://www.google.com/search?q=LangChain+documentation)
+- [AutoGen](https://www.google.com/search?q=Microsoft+AutoGen+AI+agent)
+- [CrewAI 文件](https://www.google.com/search?q=CrewAI+documentation)

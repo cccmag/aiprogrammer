@@ -243,6 +243,6 @@ Go 2.0 草案展現了 Go 團隊對社群聲音的重視。這些改進瞄準了
 
 **延伸閱讀**
 
-- [Go 2.0 草案 GitHub 討論](https://github.com/golang/go/discussions/go2)
-- [Go Error Handling 提案](https://go.dev/blog/go2-error-handling-draft)
-- [Go Generics 增強提案](https://go.dev/blog/go2-generics-draft)
+- [Go 2.0 草案](https://www.google.com/search?q=Go+2.0+draft+proposal)
+- [Go Error Handling 提案](https://www.google.com/search?q=Go+error+handling+proposal)
+- [Go Generics 增強提案](https://www.google.com/search?q=Go+generics+enhancement)

@@ -167,10 +167,10 @@ Lambda Calculus 雖然已有近 90 年歷史，其思想卻在不斷煥發新生
 
 ### 延伸閱讀
 
-- Church, A. (1936). "An Unsolvable Problem of Elementary Number Theory"
-- McCarthy, J. (1960). "Recursive Functions of Symbolic Expressions"
-- Hudak, P. (1989). "Conception, Evolution, and Application of Functional Programming Languages"
-- Vaswani, A. et al. (2017). "Attention Is All You Need"
+- [Church 1936 Lambda Calculus](https://www.google.com/search?q=Church+Lambda+Calculus+1936)
+- [McCarthy 1960 Lisp](https://www.google.com/search?q=McCarthy+Lisp+1960+Recursive+Functions)
+- [Hudak 1989 Functional Programming](https://www.google.com/search?q=Hudak+Functional+Programming+languages)
+- [Vaswani 2017 Attention Is All You Need](https://www.google.com/search?q=Attention+Is+All+You+Need+Transformer)
 
 ---
 

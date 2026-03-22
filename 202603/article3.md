@@ -242,6 +242,6 @@ WebAssembly 3.0 的記憶體隔離和 Component Model 為 Web 和 beyond-Web 應
 
 **延伸閱讀**
 
-- [WebAssembly 3.0 規範](https://www.w3.org/TR/wasm-core-3/)
-- [Component Model 規格](https://component-model.bytecodealliance.org/)
-- [WASI Preview 2 文件](https://github.com/WebAssembly/WASI/blob/main/Preview2/README.md)
+- [WebAssembly 3.0 規範](https://www.google.com/search?q=WebAssembly+3.0+specification)
+- [Component Model 規格](https://www.google.com/search?q=WebAssembly+component+model)
+- [WASI Preview 2 文件](https://www.google.com/search?q=WASI+Preview+2)

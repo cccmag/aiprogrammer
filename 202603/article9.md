@@ -293,7 +293,7 @@ inputs = processor(messages, return_tensors="pt")
 
 **延伸閱讀**
 
-- [Llama 4 模型頁面](https://llama.meta.com/)
-- [Mistral 模型廣場](https://mistral.ai/models)
-- [Qwen GitHub](https://github.com/QwenLM/Qwen)
-- [vLLM 推理引擎](https://github.com/vllm-project/vllm)
+- [Llama 4 模型](https://www.google.com/search?q=Meta+Llama+4)
+- [Mistral 模型](https://www.google.com/search?q=Mistral+AI+models)
+- [Qwen](https://www.google.com/search?q=Qwen+Alibaba+open+source+LLM)
+- [vLLM 推理引擎](https://www.google.com/search?q=vLLM+inference+engine)
