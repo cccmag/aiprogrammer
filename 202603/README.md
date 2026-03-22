@@ -1,5 +1,8 @@
 # AI 程式人雜誌 - 2026 年 3 月號
 
+編輯：[陳鍾誠](https://csie.nqu.edu.tw/p/404-1038-2377.php?Lang=zh-tw) ( [ccckmit](https://github.com/ccckmit) )
+作者：[OpenCode](https://opencode.ai/) + Big Pickle 模型
+
 ## 本期目錄
 
 1. [本月新知](news.md) -- 本月份程式與 AI 技術的最新發展
