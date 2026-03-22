@@ -17,7 +17,7 @@ AI 程式人雜誌是每月出刊，由 [陳鍾誠](https://csie.nqu.edu.tw/p/40
 目前雜誌的主題包含下列這些
 
 1. [本月新知](news.md) -- 本月份程式與 AI 技術的最新發展
-2. [歷史回顧](history.md) -- 回顧 AI 程式技術史上的主題
+2. [歷史回顧](history.md) -- 回顧 AI 程式技術史上的主題（要寫很詳細）
     * 本月回顧 Lambda Calculus 與 Functional Programming 的主題
 3. [文章集錦](articles.md) -- 每個月寫 10 篇文章，5 篇程式相關， 5 篇 AI 相關
     * [文章](article1.md)
@@ -30,7 +30,8 @@ AI 程式人雜誌是每月出刊，由 [陳鍾誠](https://csie.nqu.edu.tw/p/40
     * [文章](article8.md)
     * [文章](article9.md)
     * [文章](article10.md)
-4. [回顧與結語](end.md)
+4. [奇聞逸事](fun.md) -- 程式領域的有趣事件或歷史小故事
+5. [回顧與結語](end.md)
 
 除非編輯有要求，否則文章不需要和新知與歷史刻意做連結，而是挑選當月最熱門的技術主題
 
