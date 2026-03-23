@@ -7,15 +7,16 @@
 ## 本期目錄
 
 1. [本月新知：程式與 AI 技術的新發展](news.md)
-2. [歷史回顧：Lambda Calculus 與函數式編程](history.md)
-   - [附加：Lambda Calculus 完整實作](history_code.md) -- Church 符號與 Python 實現
-   - [主題一：數學基礎](history1.md) -- 計算理論的誕生（1920s-1930s）
-   - [主題二：Lisp 的誕生](history2.md) -- 從理論到實踐（1950s-1960s）
-   - [主題三：類型理論與 ML](history3.md) -- Hindley-Milner 的突破（1970s-1980s）
-   - [主題四：純函式與惰性求值](history4.md) -- Haskell 的誕生（1980s-1990s）
-   - [主題五：主流語言的函式化](history5.md) -- C#、Java、JavaScript、React（2000s-2010s）
-   - [主題六：Rust 與現代系統程式設計](history6.md) -- 所有權與 Iterator（2010s-2020s）
-   - [主題七：Lambda Calculus 在 AI 中的重生](history7.md) -- Transformer 與 AI Agent（2010s-2020s）
+2. [本期焦點：Lambda Calculus 與函數式編程](focus.md)
+   - [附加：Lambda Calculus 完整實作](focus_code.md) -- Church 符號與 Python 實作
+   - [主題一：數學基礎](focus1.md) -- 計算理論的誕生（1920s-1930s）
+   - [主題二：Lisp 的誕生](focus2.md) -- 從理論到實踐（1950s-1960s）
+   - [主題三：類型理論與 ML](focus3.md) -- Hindley-Milner 的突破（1970s-1980s）
+   - [主題四：純函式與惰性求值](focus4.md) -- Haskell 的誕生（1980s-1990s）
+   - [主題五：主流語言的函式化](focus5.md) -- C#、Java、JavaScript、React（2000s-2010s）
+   - [主題六：Rust 與現代系統程式設計](focus6.md) -- 所有權與 Iterator（2010s-2020s）
+   - [主題七：Lambda Calculus 在 AI 中的重生](focus7.md) -- Transformer 與 AI Agent（2010s-2020s）
+   - [本期程式實作](_code/) -- 包含 Lambda Calculus 等範例程式
 3. [文章集錦](articles.md) -- 10 篇精選文章
    - [Rust 2026 Edition：async/await 與嵌入式生態系大升級](article1.md) (程式相關)
    - [TypeScript 6.0 登場：型別系統的再進化](article2.md) (程式相關)

@@ -1,4 +1,4 @@
-# 歷史回顧
+# 本期焦點
 
 ## Lambda Calculus 與 Functional Programming 的發展歷程
 
@@ -12,51 +12,51 @@
 
 ## 大綱
 
-* [程式：Lambda Calculus 完整實作](history_code.md)
+* [程式：Lambda Calculus 完整實作](focus_code.md)
    - Church 原本符號
    - Church 編碼（布林、數字）
    - 基本運算（SUCC, PLUS, MULT）
    - Y 組合子與遞迴
-   - Python 實現可執行版本
+* [程式：Lambda Calculus 完整實作](focus_code.md)
 
-1. [數學基礎：計算理論的誕生（1920s-1930s）](history1.md)
+1. [數學基礎：計算理論的誕生（1920s-1930s）](focus1.md)
    - Gödel 與不完全性定理
    - Church 與 λ 演算
    - Turing 與圖靈機
    - Church-Turing 論題
 
-2. [Lisp 的誕生：從理論到實踐（1950s-1960s）](history2.md)
+2. [Lisp 的誕生：從理論到實踐（1950s-1960s）](focus2.md)
    - John McCarthy 與人工智慧的夢想
    - Steve Russell 與第一個 Lisp 解釋器
    - S-表達式、垃圾回收、閉包
 
-3. [類型理論與 ML：Hindley-Milner 的突破（1970s-1980s）](history3.md)
+3. [類型理論與 ML：Hindley-Milner 的突破（1970s-1980s）](focus3.md)
    - Robin Milner 與 Edinburgh LCF
    - Hindley-Milner 型別推論
    - 模式匹配、異常處理、模組系統
 
-4. [純函式與惰性求值：Haskell 的誕生（1980s-1990s）](history4.md)
+4. [純函式與惰性求值：Haskell 的誕生（1980s-1990s）](focus4.md)
    - Miranda 與 David Turner
    - Haskell 的設計哲學
    - Monads：處理副作用的革命
 
-5. [主流語言的函式化（2000s-2010s）](history5.md)
+5. [主流語言的函式化（2000s-2010s）](focus5.md)
    - C# 與 LINQ
    - Java 8 與 Stream API
    - JavaScript 的函式復興
    - React 與函式元件
 
-6. [Rust 與現代系統程式設計（2010s-2020s）](history6.md)
+6. [Rust 與現代系統程式設計（2010s-2020s）](focus6.md)
    - Rust 的誕生與設計理念
    - 所有權系統與函式特性
    - Iterator 與 combinator
 
-7. [Lambda Calculus 在現代 AI 中的重生（2010s-2020s）](history7.md)
+7. [Lambda Calculus 在現代 AI 中的重生（2010s-2020s）](focus7.md)
    - Transformer 架構與注意力機制
    - 深度學習的函式視角
    - AI Agent 與函式呼叫
 
-8. [結論與展望](history.md#結論與展望)
+8. [結論與展望](focus.md#結論與展望)
 
 ---
 
@@ -140,14 +140,14 @@ Lambda Calculus 雖然已有近 90 年歷史，其思想卻在不斷煥發新生
 
 ## 延伸閱讀
 
-- [數學基礎：計算理論的誕生](history1.md)
-- [Lisp 的誕生](history2.md)
-- [類型理論與 ML](history3.md)
-- [純函式與惰性求值](history4.md)
-- [主流語言的函式化](history5.md)
-- [Rust 與現代系統程式設計](history6.md)
-- [Lambda Calculus 在 AI 中的重生](history7.md)
+- [數學基礎：計算理論的誕生](focus1.md)
+- [Lisp 的誕生](focus2.md)
+- [類型理論與 ML](focus3.md)
+- [純函式與惰性求值](focus4.md)
+- [主流語言的函式化](focus5.md)
+- [Rust 與現代系統程式設計](focus6.md)
+- [Lambda Calculus 在 AI 中的重生](focus7.md)
 
 ---
 
-*本期歷史回顧到此結束。下期我們將回顧另一個影響深遠的主題，敬請期待。*
+*本期焦點到此結束。下期我們將聚焦另一個影響深遠的主題，敬請期待。*
