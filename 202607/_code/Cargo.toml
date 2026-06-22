@@ -1,0 +1,10 @@
+[package]
+name = "mini-grep"
+version = "0.1.0"
+edition = "2024"
+description = "A simple grep clone in Rust, built with AI assistance"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+regex = "1"
+anyhow = "1"
