@@ -1,0 +1,10 @@
+[package]
+name = "wgpu-triangle"
+version = "0.1.0"
+edition = "2024"
+description = "Minimal wgpu triangle renderer — WebGPU hello world in Rust"
+
+[dependencies]
+wgpu = "22"
+winit = "0.30"
+pollster = "0.3"

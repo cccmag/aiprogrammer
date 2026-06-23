@@ -1,0 +1,5 @@
+[package]
+name = "mini-ml"
+version = "0.1.0"
+edition = "2024"
+description = "Minimal ML inference engine in Rust — tensor, layers, forward pass"

@@ -1,0 +1,8 @@
+[package]
+name = "wasm-component"
+version = "0.1.0"
+edition = "2024"
+description = "WASM component model patterns in Rust — WIT interfaces, guest/host, cross-platform"
+
+[dependencies]
+anyhow = "1"

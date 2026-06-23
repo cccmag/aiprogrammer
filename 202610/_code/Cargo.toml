@@ -1,0 +1,8 @@
+[package]
+name = "mini-kmod"
+version = "0.1.0"
+edition = "2024"
+description = "Simulated Linux kernel module in Rust — driver patterns in userspace"
+
+[dependencies]
+libc = "0.2"

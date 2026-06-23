@@ -1,0 +1,5 @@
+[package]
+name = "mini-wasm"
+version = "0.1.0"
+edition = "2024"
+description = "WASM-compatible computation kernel in Rust — filter, transform, memory patterns"
