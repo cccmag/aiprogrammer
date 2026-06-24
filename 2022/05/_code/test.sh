@@ -1,0 +1,2 @@
+set -x
+python3 language_model.py
