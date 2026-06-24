@@ -1,0 +1,1 @@
+set -x && python3 basics.py && python3 oop.py && python3 file_io.py

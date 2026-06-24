@@ -1,0 +1,1 @@
+set -x && python3 text_processing.py

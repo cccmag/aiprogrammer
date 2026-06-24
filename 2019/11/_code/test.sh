@@ -1,0 +1,1 @@
+set -x && python3 gpt2_simplified.py

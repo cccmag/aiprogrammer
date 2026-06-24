@@ -1,0 +1,354 @@
+const canvas = document.getElementById('glCanvas');
+const gl = canvas.getContext('webgl');
+
+if (!gl) {
+    document.body.innerHTML = '<h1>WebGL not supported</h1>';
+    throw new Error('WebGL not supported');
+}
+
+const vertexShaderSource = `
+    attribute vec3 aPosition;
+    attribute vec3 aNormal;
+    attribute vec2 aTexCoord;
+
+    uniform mat4 uModel;
+    uniform mat4 uView;
+    uniform mat4 uProjection;
+    uniform mat3 uNormalMatrix;
+
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    varying vec2 vTexCoord;
+
+    void main() {
+        vec4 worldPosition = uModel * vec4(aPosition, 1.0);
+        vPosition = worldPosition.xyz;
+        vNormal = uNormalMatrix * aNormal;
+        vTexCoord = aTexCoord;
+
+        gl_Position = uProjection * uView * worldPosition;
+    }
+`;
+
+const fragmentShaderSource = `
+    precision mediump float;
+
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    varying vec2 vTexCoord;
+
+    uniform vec3 uLightDirection;
+    uniform vec3 uLightColor;
+    uniform sampler2D uTexture;
+
+    void main() {
+        vec3 normal = normalize(vNormal);
+        vec3 lightDir = normalize(uLightDirection);
+
+        float diff = max(dot(normal, lightDir), 0.0);
+        vec3 diffuse = diff * uLightColor;
+
+        vec3 ambient = vec3(0.15);
+        vec3 texColor = texture2D(uTexture, vTexCoord).rgb;
+
+        gl_FragColor = vec4((ambient + diffuse) * texColor, 1.0);
+    }
+`;
+
+function createShader(gl, type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+    }
+    return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error('Program link error:', gl.getProgramInfoLog(program));
+        gl.deleteProgram(program);
+        return null;
+    }
+    return program;
+}
+
+const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+const program = createProgram(gl, vertexShader, fragmentShader);
+
+const positions = new Float32Array([
+    -1, -1, -1,   1, -1, -1,   1,  1, -1,  -1,  1, -1,
+    -1, -1,  1,   1, -1,  1,   1,  1,  1,  -1,  1,  1,
+]);
+
+const normals = new Float32Array([
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+     1, -1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,
+]);
+
+const texCoords = new Float32Array([
+    0, 0,  1, 0,  1, 1,  0, 1,
+    0, 0,  1, 0,  1, 1,  0, 1,
+]);
+
+const indices = new Uint16Array([
+    0, 1, 2,  0, 2, 3,
+    4, 5, 6,  4, 6, 7,
+    0, 4, 7,  0, 7, 3,
+    1, 5, 6,  1, 6, 2,
+    0, 1, 5,  0, 5, 4,
+    2, 3, 7,  2, 7, 6,
+]);
+
+const positionBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+const normalBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);
+
+const texCoordBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
+
+const indexBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+
+const aPosition = gl.getAttribLocation(program, 'aPosition');
+const aNormal = gl.getAttribLocation(program, 'aNormal');
+const aTexCoord = gl.getAttribLocation(program, 'aTexCoord');
+
+function createCheckerboardTexture(gl, size) {
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+
+    const data = new Uint8Array(size * size * 4);
+    for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+            const i = (y * size + x) * 4;
+            const checker = ((x / 8) + (y / 8)) % 2 === 0;
+            const c = checker ? 200 : 80;
+            data[i] = c;
+            data[i + 1] = c / 2;
+            data[i + 2] = 20;
+            data[i + 3] = 255;
+        }
+    }
+
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, size, size, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+
+    return texture;
+}
+
+const texture = createCheckerboardTexture(gl, 64);
+
+const uModel = gl.getUniformLocation(program, 'uModel');
+const uView = gl.getUniformLocation(program, 'uView');
+const uProjection = gl.getUniformLocation(program, 'uProjection');
+const uNormalMatrix = gl.getUniformLocation(program, 'uNormalMatrix');
+const uLightDirection = gl.getUniformLocation(program, 'uLightDirection');
+const uLightColor = gl.getUniformLocation(program, 'uLightColor');
+const uTexture = gl.getUniformLocation(program, 'uTexture');
+
+let rotationX = 0;
+let rotationY = 0;
+let cameraAngle = 0;
+
+function mat4Perspective(fov, aspect, near, far) {
+    const f = 1.0 / Math.tan(fov / 2);
+    return new Float32Array([
+        f / aspect, 0, 0, 0,
+        0, f, 0, 0,
+        0, 0, (far + near) / (near - far), -1,
+        0, 0, (2 * far * near) / (near - far), 0,
+    ]);
+}
+
+function mat4LookAt(eye, center, up) {
+    const z = normalize3(subtract3(eye, center));
+    const x = normalize3(cross3(up, z));
+    const y = cross3(z, x);
+
+    return new Float32Array([
+        x[0], y[0], z[0], 0,
+        x[1], y[1], z[1], 0,
+        x[2], y[2], z[2], 0,
+        -dot3(x, eye), -dot3(y, eye), -dot3(z, eye), 1,
+    ]);
+}
+
+function mat4RotateX(m, angle) {
+    const c = Math.cos(angle);
+    const s = Math.sin(angle);
+    return new Float32Array([
+        1, 0, 0, 0,
+        0, c, -s, 0,
+        0, s, c, 0,
+        0, 0, 0, 1,
+    ]);
+}
+
+function mat4RotateY(m, angle) {
+    const c = Math.cos(angle);
+    const s = Math.sin(angle);
+    return new Float32Array([
+        c, 0, s, 0,
+        0, 1, 0, 0,
+        -s, 0, c, 0,
+        0, 0, 0, 1,
+    ]);
+}
+
+function mat4Multiply(a, b) {
+    const result = new Float32Array(16);
+    for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 4; col++) {
+            let sum = 0;
+            for (let k = 0; k < 4; k++) {
+                sum += a[row * 4 + k] * b[k * 4 + col];
+            }
+            result[row * 4 + col] = sum;
+        }
+    }
+    return result;
+}
+
+function mat3FromMat4(m) {
+    return new Float32Array([
+        m[0], m[1], m[2],
+        m[4], m[5], m[6],
+        m[8], m[9], m[10],
+    ]);
+}
+
+function subtract3(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+function normalize3(v) {
+    const len = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    return [v[0] / len, v[1] / len, v[2] / len];
+}
+function cross3(a, b) {
+    return [
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0],
+    ];
+}
+function dot3(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+
+let isDragging = false;
+let lastX = 0, lastY = 0;
+
+canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+canvas.addEventListener('mouseup', () => { isDragging = false; });
+canvas.addEventListener('mouseleave', () => { isDragging = false; });
+
+canvas.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    rotationY += dx * 0.01;
+    rotationX += dy * 0.01;
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+canvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        isDragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+    }
+});
+
+canvas.addEventListener('touchend', () => { isDragging = false; });
+
+canvas.addEventListener('touchmove', (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - lastX;
+    const dy = e.touches[0].clientY - lastY;
+    rotationY += dx * 0.01;
+    rotationX += dy * 0.01;
+    lastX = e.touches[0].clientX;
+    lastY = e.touches[0].clientY;
+});
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+function render() {
+    gl.clearColor(0.1, 0.1, 0.15, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.enable(gl.DEPTH_TEST);
+
+    gl.useProgram(program);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.enableVertexAttribArray(aPosition);
+    gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+    gl.enableVertexAttribArray(aNormal);
+    gl.vertexAttribPointer(aNormal, 3, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+    gl.enableVertexAttribArray(aTexCoord);
+    gl.vertexAttribPointer(aTexCoord, 2, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+
+    const aspect = canvas.width / canvas.height;
+    const projection = mat4Perspective(Math.PI / 4, aspect, 0.1, 100);
+
+    cameraAngle += 0.003;
+    const camX = Math.sin(cameraAngle) * 5;
+    const camZ = Math.cos(cameraAngle) * 5;
+    const view = mat4LookAt([camX, 3, camZ], [0, 0, 0], [0, 1, 0]);
+
+    let model = new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);
+    model = mat4Multiply(mat4RotateX(model, rotationX), mat4RotateY(model, rotationY));
+
+    gl.uniformMatrix4fv(uModel, false, model);
+    gl.uniformMatrix4fv(uView, false, view);
+    gl.uniformMatrix4fv(uProjection, false, projection);
+    gl.uniformMatrix3fv(uNormalMatrix, false, mat3FromMat4(model));
+
+    gl.uniform3f(uLightDirection, 1.0, 1.0, 1.0);
+    gl.uniform3f(uLightColor, 1.0, 0.9, 0.8);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.uniform1i(uTexture, 0);
+
+    gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
+
+    requestAnimationFrame(render);
+}
+
+render();
+
+console.log('WebGL 3D Demo initialized');

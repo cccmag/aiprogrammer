@@ -1,0 +1,1 @@
+set -x && python3 nlp_demo.py

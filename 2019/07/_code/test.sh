@@ -1,0 +1,1 @@
+set -x && python3 lstm_sentiment.py

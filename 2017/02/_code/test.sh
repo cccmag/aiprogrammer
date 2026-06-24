@@ -1,0 +1,1 @@
+set -x && python3 tensorflow_basics.py && python3 keras_model.py && python3 custom_training.py

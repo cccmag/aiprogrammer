@@ -1,0 +1,2 @@
+set -x
+python3 cnn_demo.py

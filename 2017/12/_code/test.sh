@@ -1,0 +1,1 @@
+set -x && python3 deep_learning_timeline.py

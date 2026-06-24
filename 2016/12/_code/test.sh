@@ -1,0 +1,1 @@
+set -x && python3 docker_demo.py && python3 k8s_demo.py

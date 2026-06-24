@@ -1,0 +1,1 @@
+set -x && python3 mongodb_demo.py && python3 redis_demo.py && python3 couchdb_demo.py

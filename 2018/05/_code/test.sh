@@ -1,0 +1,1 @@
+set -x && python3 neural_network.py

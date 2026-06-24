@@ -1,0 +1,1 @@
+set -x && python3 keras_mnist.py

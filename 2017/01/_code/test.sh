@@ -1,0 +1,1 @@
+set -x && python3 pip_demo.py && python3 numpy_demo.py && python3 pandas_demo.py && python3 matplotlib_demo.py

@@ -1,0 +1,1 @@
+set -x && python3 automata.py && python3 regex_engine.py

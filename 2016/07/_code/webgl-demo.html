@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebGL 3D Demo - AI 程式人雜誌</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #1a1a1a; }
+        canvas { width: 100vw; height: 100vh; display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: monospace;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="info">
+    WebGL 3D Demo - 2016/07<br>
+    Use mouse to rotate view
+</div>
+<canvas id="glCanvas"></canvas>
+<script type="module" src="webgl-demo.js"></script>
+</body>
+</html>

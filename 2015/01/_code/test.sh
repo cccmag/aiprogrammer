@@ -1,0 +1,1 @@
+set -x && node dom-demo.js && node event-handler.js && node fetch-demo.js

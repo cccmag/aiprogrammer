@@ -1,0 +1,1 @@
+set -x && node _code/activity-demo.js && node _code/intent-demo.js && node _code/ui-demo.js

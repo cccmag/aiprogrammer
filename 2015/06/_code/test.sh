@@ -1,0 +1,1 @@
+set -x && gcc -Wall -Wextra -o pointer_demo pointer_demo.c && ./pointer_demo && gcc -Wall -Wextra -o list_demo list_demo.c && ./list_demo && gcc -Wall -Wextra -o file_demo file_demo.c && ./file_demo
